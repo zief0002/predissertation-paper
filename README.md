@@ -211,10 +211,10 @@ Y_i = \beta_0 + \beta_1(X_{1i}) + \beta_2(X_{2i}) + \epsilon_i
 Figures and tables with captions will be placed in `figure` and `table` environments, respectively.
 
 ```
-```{r nice-fig, fig.cap='Here is a nice figure!', out.width='80%', fig.asp=.75, fig.align='center', fig.pos='H'}
+\`\`\`{r nice-fig, fig.cap='Here is a nice figure!', out.width='80%', fig.asp=.75, fig.align='center', fig.pos='H'}
 par(mar = c(4, 4, .1, .1))
 plot(pressure, type = 'b', pch = 19)
-```
+\`\`\`
 ```
 
 Reference a figure by its code chunk label with the `fig:` prefix, e.g., see Figure \@ref(fig:nice-fig). 
