@@ -194,8 +194,7 @@ Using LaTeX is the best way to typeset mathematics. One nice feature of _R Markd
 
 ```
 $$
-\sum_{j=1}^n (\delta\theta_j)^2 \leq {{\beta_i^2}\over{\delta_i^2 + \rho_i^2}}
-\left[ 2\rho_i^2 + {\delta_i^2\beta_i^2\over{\delta_i^2 + \rho_i^2}} \right] \equiv \omega_i^2
+\hat{Y_i} = \beta_0 + \beta_1(X_{1i}) + \beta_2(X_{2i})
 $$
 ```
 
@@ -203,10 +202,22 @@ To include a numbered equation, use `\begin{equation}` and `\end{equation}` to e
 
 ```
 \begin{equation}
-\pi(\theta|X_1< y_1,\dots,X_n<y_n) \varpropto \pi(\theta) \prod_{i=1}^n\int_{-\infty}^{y_i}
-   \exp\left(-{(x-\theta)^2\over{2\sigma^2}}\right)\ dx
+Y_i = \beta_0 + \beta_1(X_{1i}) + \beta_2(X_{2i}) + \epsilon_i
 \end{equation}
 ```
+
+### Figures and Tables
+
+Figures and tables with captions will be placed in `figure` and `table` environments, respectively.
+
+```
+```{r nice-fig, fig.cap='Here is a nice figure!', out.width='80%', fig.asp=.75, fig.align='center', fig.pos='H'}
+par(mar = c(4, 4, .1, .1))
+plot(pressure, type = 'b', pch = 19)
+```
+```
+
+Reference a figure by its code chunk label with the `fig:` prefix, e.g., see Figure \@ref(fig:nice-fig). 
 
 
 

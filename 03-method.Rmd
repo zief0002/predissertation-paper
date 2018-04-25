@@ -3,19 +3,19 @@
 As promised, here we reference the previous chapter, Chapter \@ref(review), using the chapter ID.
 
 
+\TeX\ is the best way to typeset mathematics. Donald Knuth designed \TeX\ when he got frustrated at how long it was taking the typesetters to finish his book, which contained a lot of mathematics.  One nice feature of _R Markdown_ is its ability to read LaTeX code directly.
+
 <!-- Unnumbered equation, use '$$' -->
 
 $$
-\sum_{j=1}^n (\delta\theta_j)^2 \leq {{\beta_i^2}\over{\delta_i^2 + \rho_i^2}}
-\left[ 2\rho_i^2 + {\delta_i^2\beta_i^2\over{\delta_i^2 + \rho_i^2}} \right] \equiv \omega_i^2
+\hat{Y_i} = \beta_0 + \beta_1(X_{1i}) + \beta_2(X_{2i})
 $$
 
 
 <!-- To have a numbered equation, use the \begin{equation} and \end{equation} to embed your mathematics rather than '$$' -->
 
 \begin{equation}
-\pi(\theta|X_1< y_1,\dots,X_n<y_n) \varpropto \pi(\theta) \prod_{i=1}^n\int_{-\infty}^{y_i}
-   \exp\left(-{(x-\theta)^2\over{2\sigma^2}}\right)\ dx
+Y_i = \beta_0 + \beta_1(X_{1i}) + \beta_2(X_{2i}) + \epsilon_i
 \end{equation}
 
 
