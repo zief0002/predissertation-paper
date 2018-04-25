@@ -206,20 +206,143 @@ Y_i = \beta_0 + \beta_1(X_{1i}) + \beta_2(X_{2i}) + \epsilon_i
 \end{equation}
 ```
 
-### Figures and Tables
+### Figures
+
+If your thesis has a lot of figures, _R Markdown_ might behave better for you than that other word processor. One perk is that it will automatically number the figures accordingly in each chapter. You'll also be able to create a label for each figure, add a caption, and then reference the figure in a way similar to what we saw with tables earlier. If you label your figures, you can move the figures around and _R Markdown_ will automatically adjust the numbering for you. No need for you to remember! So that you don't have to get too far into LaTeX to do this, a couple **R** functions have been created for you to assist. You'll see their use below.
 
 Figures and tables with captions will be placed in `figure` and `table` environments, respectively.
 
+
+
+
+
+
+
+
+We can import pictures that were not created in **R**. In the code chunk below, we will load in a picture stored as `goldy.png` in our `figures` directory. We then give it the caption of "Goldy rendered as a pencil drawing.", the label of "goldy", and specify that this is a figure. Make note of the different **R** chunk options that are given in the R Markdown file (not shown in the knitted document).
+
+````
+```{r goldy, fig.cap="Goldy rendered as a pencil drawing."}
+include_graphics(path = "figures/goldy.png")
+```
 ````
 
+Here is a reference to the Goldy image: Figure `\@ref(fig:goldy)`. Note the use of the `fig:` code here. By naming the **R** chunk that contains the figure, we can then reference that figure later as done in the first sentence here. We can also specify the caption for the figure via the R chunk option `fig.cap`.
+
+You can, of course, also create figures using R syntax within a code chunk. 
+
+````
 ```{r nice-fig, fig.cap='Here is a nice figure!', out.width='80%', fig.asp=.75, fig.align='center', fig.pos='H'}
 par(mar = c(4, 4, .1, .1))
 plot(pressure, type = 'b', pch = 19)
 ```
-
 ````
 
-Reference a figure by its code chunk label with the `fig:` prefix, e.g., see Figure \@ref(fig:nice-fig). 
+Similar to our Goldy picture, we reference these figures through calling its code chunk label with the `fig:` prefix, e.g., see Figure `\@ref(fig:nice-fig)`. 
+
+
+*Note:* If you need it to appear in the list of figures or tables, it should be placed in a code chunk.
+
+
+### Tables
+
+The easiest way to create a table is to use Excel to input the information for your table and save it as a CSV file. Then you can read in the CSV file, and use the `kable()` function from **knitr** to style the table.
+
+````
+```{r nice-tab}
+#Read in data
+gopher = readr::read_csv("data/tab-gopher-women-sports.csv")
+
+# Create table
+knitr::kable(
+  gopher, 
+  caption = "2017 Ticket Sales and Operating Revenue for the University of Minnesota Women's Athletic Teams",
+  booktabs = TRUE
+)
+```
+````
+
+Further table styling can be carried out via the **kableExtra** package; see https://haozhu233.github.io/kableExtra/awesome_table_in_pdf.pdf. Below we demonstrate some of that functionality.
+
+````
+```{r nice-tab-2}
+library(kableExtra)
+
+knitr::kable(
+  gopher, 
+  caption = "2017 Ticket Sales and Operating Revenue for the University of Minnesota Women's Athletic Teams",
+  booktabs = TRUE,
+  format = "latex"
+  ) %>%
+  footnote(general = "Data obtained from the 2017 NCAA Financial Report")
+```
+````
+
+You can also create the table from within R itself and then use `kable()`.
+
+````
+```{r}
+tab = flights %>%
+  filter(month == 12, day == 24) %>%
+  group_by(carrier_name) %>%
+  summarize(
+    Departure = mean(dep_delay),
+    Arrival = mean(arr_delay)
+    ) %>%
+  select(Carrier = carrier_name, Departure, Arrival)
+
+knitr::kable(
+  tab, 
+  caption = "Average Departure and Arrival Delay (in Minutes) by Carrier on Decemebr 24",
+  booktabs = TRUE,
+  format = "latex",
+  digits = 2
+  )
+```
+````
+
+Finally, you can also reference tables generated from `knitr::kable()`, e.g., see Table `\@ref(tab:nice-tab)`.
+
+### Floats
+
+One thing that may be annoying is the way _R Markdown_ handles "floats" like tables and figures (it's really LaTeX's fault). LaTeX will try to find the best place to put your object based on the text around it and until you're really, truly done writing you should just leave it where it lies. There are some optional arguments specified in the options parameter of the `label` function. If you need to shift your figure around, it might be good to look here on tweaking the options argument: <https://en.wikibooks.org/wiki/LaTeX/Floats,_Figures_and_Captions>
+
+To override LaTeX's floating, we include the chunk option `pos="H"`. That will override the float and place the figure exactly where the code chunk is. This is a LaTeX positioning called from the **float** package, which is pre-loaded in the QME Predissertation Paper template style files.
+
+````
+```{r goldy2, fig.cap="Goldy still rendered as a pencil drawing. This time we overrode the float using the 'H' option.", fig.pos="H"}
+include_graphics(path = "figures/goldy.png")
+```
+````
+
+
+## Footnotes and Endnotes
+
+You might want to footnote something. ^[footnote text] The footnote will be in a smaller font and placed appropriately. Endnotes work in much the same way. 
+
+
+## Citations
+
+You can write citations, too. For example, we are using the **bookdown** package `[@R-bookdown]` in this sample book, which was built on top of R Markdown and **knitr** `[@xie2015]`.
+
+
+## Bibliographies
+
+Of course you will need to cite things, and you will probably accumulate an armful of sources. There are a variety of tools available for creating a bibliography database (stored with the .bib extension). In addition to BibTeX suggested below, you may want to consider using the free and easy-to-use tool called Zotero. Some Zotero documentation is at http://libguides.reed.edu/citation/zotero. In addition, a tutorial is available from Middlebury College at http://sites.middlebury.edu/zoteromiddlebury/.
+
+_R Markdown_ uses _pandoc_ (http://pandoc.org/) to build its bibliographies. One nice caveat of this is that you won't have to do a second compile to load in references as standard LaTeX requires. To cite references in your thesis (after creating your bibliography database), place the reference name inside square brackets and precede it by the "at" symbol. For example, here's a reference to a book about worrying: [@Molina1994]. This `Molina1994` entry appears in a file called `thesis.bib` in the `bib` folder. This bibliography database file was created by a program called BibTeX. You can call this file something else if you like (look at the YAML header in the main .Rmd file) and, by default, is to placed in the `bib` folder. 
+
+For more information about BibTeX and bibliographies, see (http://web.reed.edu/cis/help/latex/index.html)^[@reedweb2007]. There are three pages on this topic: _bibtex_ (which talks about using BibTeX, at http://web.reed.edu/cis/help/latex/bibtex.html), _bibtexstyles_ (about how to find and use the bibliography style that best suits your needs, at http://web.reed.edu/cis/help/latex/bibtexstyles.html) and _bibman_ (which covers how to make and maintain a bibliography by hand, without BibTeX, at http://web.reed.edu/cis/help/latex/bibman.html). The last page will not be useful unless you have only a few sources.
+
+If you look at the YAML header at the top of the main .Rmd file you can see that we can specify the style of the bibliography by referencing the appropriate csl file. You can download a variety of different style files at https://www.zotero.org/styles. Make sure to download the file into the csl folder.
+
+**Tips for Bibliographies**
+
+- Like with thesis formatting, the sooner you start compiling your bibliography for something as large as thesis, the better. 
+- The cite key (a citation's label) needs to be unique from the other entries.
+- When you have more than one author or editor, you need to separate each author's name by the word "and" e.g. `Author = {Noble, Sam and Youngberg, Jessica},`.
+- Bibliographies made using BibTeX (whether manually or using a manager) accept LaTeX markup, so you can italicize and add symbols as necessary.
+- To force capitalization in an article title or where all lowercase is generally used, bracket the capital letter in curly braces.
 
 
 
@@ -232,4 +355,8 @@ The QME Predissertation Paper template draws inspiration from several places. Th
 - [Yihui Xie](https://bookdown.org/yihui/bookdown/) for his work on `bookdown`, the work-horse beneath the template.
 - [RStudio Team](https://www.rstudio.com/) for their vision in creating RStudio, their continued resources in building educational resources, and their willingness to share all of it with the world.
 
+
+## Anything else?
+
+If you would like to see examples of other things in this template, please contact me at [zief0002@umn.edu](zief0002@umn.edu) with your suggestions. I love to see people using _R Markdown_ for their theses, and am happy to help.
 

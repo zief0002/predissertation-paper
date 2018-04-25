@@ -24,7 +24,7 @@ Y_i = \beta_0 + \beta_1(X_{1i}) + \beta_2(X_{2i}) + \epsilon_i
 
 Figures and tables with captions will be placed in `figure` and `table` environments, respectively.
 
-```{r nice-fig, fig.cap='Here is a nice figure!', out.width='80%', fig.asp=.75, fig.align='center', fig.pos='H'}
+```{r nice-fig, echo=FALSE, fig.cap='Here is a nice figure!', out.width='60%', fig.asp=.75, fig.align='center', fig.pos='H'}
 par(mar = c(4, 4, .1, .1))
 plot(pressure, type = 'b', pch = 19)
 ```
@@ -35,7 +35,7 @@ Reference a figure by its code chunk label with the `fig:` prefix, e.g., see Fig
 
 The easiest way to create a table is to use Excel to input the information for your table and save it as a CSV file. Then you can read in the CSV file, and use the `kable()` function from **knitr** to style the table.
 
-```{r nice-tab}
+```{r nice-tab, echo=FALSE, message=FALSE}
 #Read in data
 gopher = readr::read_csv("data/tab-gopher-women-sports.csv")
 
@@ -47,45 +47,11 @@ knitr::kable(
 )
 ```
 
-Further table styling can be carried out via the **kableExtra** package; see https://haozhu233.github.io/kableExtra/awesome_table_in_pdf.pdf. Below we demonstrate some of that functionality.
-
-```{r nice-tab-2}
-library(kableExtra)
-
-knitr::kable(
-  gopher, 
-  caption = "2017 Ticket Sales and Operating Revenue for the University of Minnesota Women's Athletic Teams",
-  booktabs = TRUE,
-  format = "latex"
-  ) %>%
-  footnote(general = "Data obtained from the 2017 NCAA Financial Report")
-```
-
-You can also create the table from within R itself and then use `kable()`.
-
-```{r}
-tab = flights %>%
-  filter(month == 12, day == 24) %>%
-  group_by(carrier_name) %>%
-  summarize(
-    Departure = mean(dep_delay),
-    Arrival = mean(arr_delay)
-    ) %>%
-  select(Carrier = carrier_name, Departure, Arrival)
-
-knitr::kable(
-  tab, 
-  caption = "Average Departure and Arrival Delay (in Minutes) by Carrier on Decemebr 24",
-  booktabs = TRUE,
-  format = "latex",
-  digits = 2
-  )
-```
+Further table styling can be carried out via the **kableExtra** package; see https://haozhu233.github.io/kableExtra/awesome_table_in_pdf.pdf. You can also reference tables generated from `knitr::kable()`, e.g., see Table \@ref(tab:nice-tab).
 
 
+\clearpage
 
-You can also reference tables generated from `knitr::kable()`, e.g., see Table \@ref(tab:nice-tab).
-
-
-
+<!-- clearpage ends the page, and also dumps out all floats.
+ Floats are things like tables and figures. It is useful to inlcude this at the end of each chapter. -->
 

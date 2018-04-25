@@ -10,6 +10,9 @@ Summarize the entire project including what hypothesis/questions were investigat
 
 
 
-## Anything else?
 
-If you would like to see examples of other things in this template, please contact me at [zief0002@umn.edu](zief0002@umn.edu) with your suggestions. I love to see people using _R Markdown_ for their theses, and am happy to help.
+\clearpage
+
+<!-- clearpage ends the page, and also dumps out all floats.
+ Floats are things like tables and figures. It is useful to inlcude this at the end of each chapter. -->
+
