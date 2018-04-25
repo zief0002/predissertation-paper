@@ -1,0 +1,38 @@
+--- 
+title: "My Predissertation Paper"
+author: "Tricia Marie McMillan"
+date: "`r Sys.Date()`"
+description: "This is a description of your predissertation paper."
+site: bookdown::bookdown_site
+output: bookdown::pdf_book
+documentclass: memoir
+classoption: [12pt, letterpaper, oneside, oldfontcommands]
+bibliography: ['bib/book.bib', 'bib/packages.bib']
+biblio-style: apalike
+---
+
+
+
+<!-- We begin by checking to ensure that needed packages are installed and then we load them into our current working environment. -->
+
+```{r load_pkgs, echo=FALSE, message=FALSE}
+library(bookdown)
+library(devtools)
+library(dplyr)
+library(ggplot2)
+library(knitr)
+library(kableExtra)
+```
+
+
+```{r echo=FALSE}
+# Set knitr options to print a blank instead of 'NA'
+options(knitr.kable.NA = '')
+```
+
+
+
+```{r load_data, echo=FALSE, message=FALSE}
+# Load flights data
+flights = readr::read_csv("data/flights.csv")
+```

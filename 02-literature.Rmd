@@ -1,0 +1,97 @@
+# Review of the Literature {#review}
+
+<!--
+The {#review} text after the chapter declaration will allow us to link throughout the document back to the beginning of Chapter 2. Look for the reference to this label at the beginning of Chapter 3. These labels will automatically be generated (if not specified) by changing the spaces to hyphens and capital letters to lowercase. For example, if it weren't specified here, the label would be '#review-of-the-literature'.
+-->
+
+The directory/file structure for the QME Predissertation Paper template is below.
+
+
+```
+├── 01-intro.Rmd
+├── 02-literature.Rmd
+├── 03-method.Rmd
+├── 04-results.Rmd
+├── 05-discussion.Rmd
+├── 06-references.Rmd
+├── DESCRIPTION
+├── LICENSE
+├── _book
+│   ├── predissertation.pdf
+│   └── predissertation.tex
+├── _bookdown.yml
+├── _bookdown_files
+│   └── predissertation_files
+│       └── figure-latex
+│           ├── delaysboxplot-1.pdf
+│           ├── march3plot-1.pdf
+│           ├── nice-fig-1.pdf
+│           └── pressure-1.pdf
+├── _build.sh
+├── _deploy.sh
+├── _output.yml
+├── bib
+│   ├── book.bib
+│   └── packages.bib
+├── data
+│   ├── flights.csv
+│   └── tab-gopher-women-sports.csv
+├── figures
+│   └── goldy.png
+├── frontmatter
+│   └── 00-abstract.Rmd
+├── index.Rmd
+├── predissertation.Rproj
+├── scripts
+│   ├── knit-chapters-to-docx.R
+│   └── thesis-style-ref.docx
+├── style
+│   ├── frontmatter.tex
+│   ├── preamble.tex
+│   └── template.tex
+└── thesis.lol
+```
+
+Most of these files you do not need to touch at all. The best way to work with these files is to open the `predissertation.Rproj` file. This will open an R Project called `predissertation` in RStudio and you can select individual files by clicking on them under the `Files` tab.
+
+## index.Rmd
+
+The file `index.Rmd` is the file that is like the master file. Compiling this file calls all of the content files (see below), puts them in to a single predissertation document, and styles them appropriately. 
+
+In this file, you can change the YAML metadata to provide the `title`, `author`, and `description` of your predissertation paper. You should not need to change anything else (unless you add an additional BIB file; see section below).
+
+## Building the Predissertation Paper
+
+To actually compile your predissertation paper into a PDF file, click the `Build Book` button under the `Build` tab in RStudio. (Or select `Build All` from the `Build` menu.) Clicking `Knit` will only compile the chapter you are currently working on and will likely put PLACEHOLDERS in for other chapters. Building, not knitting, is how the entire document is created.
+
+The predissertation paper is then compiled into a TeX document (`predissertation.tex`) and a PDF file (`predissertation.pdf`). Both of these are created and placed in the `_book` directory.
+
+## Adding Content
+
+The primary files you need to edit will be the actual chapter RMD files (those that begin with a number). The following files will hold the content of each chapter (major section) in your predissertation paper:
+
+- `01-introduction.Rmd`
+- `02-literature.Rmd`
+- `03-method.Rmd`
+- `04-results.Rmd`
+- `05-discussion.Rmd`
+
+The first line in these files begins with a hashtag and gives the chapter title. (You do not have to change these chapter titles unless you want to.) Add content to these files as you write your paper.
+
+The file `00-abstract.Rmd` in the `frontmatter` directory is where you can include your predissertation paper's abstract. This document should not include a chapter/section title. The formatting of the \LaTeX will add this automatically.
+
+## Figures, Data, and BIB Files
+
+The `figures`, `data`, and `bib` directories are repository folders to store figures, data, and BIB files you want to include in your predissertation paper. While they don't need to be placed in these folders, doing so will keep your predissertation project more organized.
+
+The BIB files are where we include the metadata (using BIBTeX) for the references. If you include additional BIB files, you also need to include those in the YAML section of `index.Rmd`.
+
+
+## Word Document for your Advisor
+
+You can send the PDF file of your predissertation paper to your advisor for comments and edits. However, most advisors are more comfortable using Word to edit and make comments. There is an R script file (`knit-chapters-to-docx.R`) in the `scripts` folder that you can run to compile each chapter into a separate DOCX document.
+
+
+
+
+

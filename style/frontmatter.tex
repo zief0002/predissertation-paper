@@ -1,0 +1,85 @@
+% Turn off page numbering
+\pagestyle{empty}
+% Number early pages in unused series (to prevent PDF problems)
+\pagenumbering{Roman}
+
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Make the title page
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\begin{center}
+{\Huge \textcolor{smartblue}{{\textsc{\MakeTextUppercase{{\thetitle}}}}}\\}
+
+% \textit{\thesubtitle}
+
+\vskip 1in
+{\LARGE \adforn{21}}\\
+\vskip 0.75in
+\theauthor \\
+\monthyeardate\today
+
+\vskip 0.75in
+\textit{Pre-dissertation Paper} \\
+
+\vskip 0.75in
+
+Quantitative Methods in Education \\[2ex]
+Department of Educational Psychology \\[-1.5ex]
+University of Minnesota
+
+\vfill
+% \vskip 0.75in
+
+\end{center}
+
+\makeatletter
+
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Set up abstract
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\clearpage
+
+\begin{abstract}
+
+\begingroup
+\obeylines
+\input{frontmatter/00-abstract.Rmd}%
+\endgroup%
+
+\end{abstract}
+
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% TOC, list of tables, list of figures
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\clearpage
+\pagestyle{ruled}
+
+\tableofcontents*
+\clearpage
+
+\listoftables
+\clearpage
+
+\listoffigures
+\clearpage
+
+% \listoflistings
+% \clearpage
+
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Main matter
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\mainmatter
+
+\SingleSpacing

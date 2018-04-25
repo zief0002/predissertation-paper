@@ -1,0 +1,15 @@
+# Discussion
+
+Summarize the entire project including what hypothesis/questions were investigated, why they were investigated, how they were investigated, the major findings, and your conclusions.
+
+1. Discuss the findings and the hypothesis in a holistic and integrated fashion.
+2. Explain any extraneous factors that may have led to the results you obtained.
+3. Discuss the practical and theoretical implications of your findings and precisely how your research supports each implication.
+4. State the conclusions to be drawn from your entire study (including review of the literature and empirical findings; i.e., integrate everything).
+5. Discuss suggestion for future research, next stages of research, what others might do to follow up on your study.
+
+
+
+## Anything else?
+
+If you would like to see examples of other things in this template, please contact me at [zief0002@umn.edu](zief0002@umn.edu) with your suggestions. I love to see people using _R Markdown_ for their theses, and am happy to help.

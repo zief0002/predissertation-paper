@@ -1,0 +1,179 @@
+
+\usepackage{booktabs}
+\usepackage{amsthm}
+\usepackage{microtype}
+\usepackage{xltxtra}
+\usepackage{hyperref}
+\usepackage{datetime}
+\usepackage{float}
+\usepackage{adforn}
+\usepackage[table]{xcolor}
+\usepackage{fix-cm}
+
+
+\makeatletter
+\def\thm@space@setup{%
+  \thm@preskip=8pt plus 2pt minus 4pt
+  \thm@postskip=\thm@preskip
+}
+\makeatother
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Define colors
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\definecolor{numbercolor}{gray}{0.7}
+\definecolor{smartblue}{HTML}{193A6B}
+
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Set fonts
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\defaultfontfeatures{Mapping=tex-text}
+\newfontfamily{\smallcaps}[RawFeature={c2sc,scmp}]{EB Garamond}
+\defaultfontfeatures{Ligatures=TeX}
+\setmainfont[Numbers=OldStyle, Contextuals=Alternate, Ligatures={Common}]{EB Garamond}
+\setsansfont[Scale=MatchLowercase, BoldFont={Lato Bold}]{Lato Regular}
+\setmonofont[Scale=MatchLowercase]{Source Code Pro}
+
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Basic page layout
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\usepackage{calc}
+\setlrmarginsandblock{1.5in}{1in}{*}
+\setulmarginsandblock{1in + \headheight + \headsep}{1in + \footskip}{*}
+\DoubleSpacing
+\checkandfixthelayout
+\setlength\evensidemargin{\oddsidemargin}
+
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Some nice chapter headings
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\newif\ifchapternonum
+\makechapterstyle{jenor}{
+  \renewcommand\printchaptername{}
+  \renewcommand\printchapternum{}
+  \renewcommand\printchapternonum{\chapternonumtrue}
+  \renewcommand\chaptitlefont{\fontfamily{Lato Regular}\fontseries{db}%
+    \fontshape{n}\fontsize{25}{35}\selectfont\color{smartblue}\raggedleft}
+  \renewcommand\chapnumfont{\fontseries{m}\fontshape{n}%
+    \fontsize{1in}{0in}\selectfont\color{numbercolor}}
+  \renewcommand\printchaptertitle[1]{%
+    \noindent%
+    \ifchapternonum%
+    \begin{tabularx}{\textwidth}{X}%
+    {\parbox[b]{\linewidth}{\chaptitlefont ##1}%
+      \vphantom{\raisebox{-15pt}{\chapnumfont 1}}}
+    \end{tabularx}%
+    \else
+    \begin{tabularx}{\textwidth}{Xl}
+    {\parbox[b]{\linewidth}{\chaptitlefont ##1}}
+    & \raisebox{-15pt}{\chapnumfont \thechapter}%
+    \end{tabularx}%
+    \fi
+    \par\vskip2mm\hrule
+  }
+}
+\chapterstyle{jenor}
+
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Section numbering - Number subsections, but don't include in TOC
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\setsecnumdepth{subsection}
+\maxtocdepth{subsection}
+\settocdepth{section}
+
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Use small bold text for captions
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\captionnamefont{\small\bfseries}
+\captionstyle{\small}
+\setlength\abovecaptionskip{1ex}
+\subcaptionsize{\scriptsize}
+
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Sans-serif section headings
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\setsecheadstyle{\sffamily\large\bfseries}
+\setaftersecskip{8pt plus 3pt minus 2pt}
+\setsubsecheadstyle{\sffamily}
+\setaftersubsecskip{6pt plus 2pt minus 2pt}
+
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Change 'Bibliography' to 'References'
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\renewcommand\bibname{References}
+\renewcommand{\prebibhook}{\raggedright}
+\renewcommand{\subtitle}[1]{\def\thesubtitle{#1}}
+
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Make verbatim single spaced
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\makeatletter
+\let\old@verbatim@start\verbatim@start
+\def\verbatim@start{\old@verbatim@start%
+\baselineskip\onelineskip}
+\makeatother
+
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Add Listing float type
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+% \newfloat[chapter]{listing}{lol}{Listing}
+% \newcommand{\listlistingname}{List of Listings}
+% \newlistof{listoflistings}{lol}{\listlistingname}
+% \newlistentry{listing}{lol}{0}
+
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Formate date for title page
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\newdateformat{monthyeardate}{%
+  \monthname[\THEMONTH], \THEYEAR}
+
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Rename 'Contents' to 'Table of Contents'
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\renewcommand{\contentsname}{Table of Contents}
+
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Don't print the memoir title (use the UMN thesis titling instead)
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\AtBeginDocument{\let\maketitle\relax}
+
+
+

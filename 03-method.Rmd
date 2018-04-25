@@ -1,0 +1,143 @@
+# Methods
+
+As promised, here we reference the previous chapter, Chapter \@ref(review), using the chapter ID.
+
+
+## Mathematics
+
+<!-- Required to number equations in HTML files -->
+<script type="text/x-mathjax-config">
+MathJax.Hub.Config({
+  TeX: { equationNumbers: { autoNumber: "AMS" } }
+});
+</script>
+
+
+
+\TeX\ is the best way to typeset mathematics. Donald Knuth designed \TeX\ when he got frustrated at how long it was taking the typesetters to finish his book, which contained a lot of mathematics.  One nice feature of _R Markdown_ is its ability to read LaTeX code directly.
+
+
+$$\sum_{j=1}^n (\delta\theta_j)^2 \leq {{\beta_i^2}\over{\delta_i^2 + \rho_i^2}}
+\left[ 2\rho_i^2 + {\delta_i^2\beta_i^2\over{\delta_i^2 + \rho_i^2}} \right] \equiv \omega_i^2
+$$
+
+From Informational Dynamics, we have the following (Dave Braden):
+
+After _n_ such encounters the posterior density for $\theta$ is
+
+<!-- To have a numbered equation, use the \begin{equation} and \end{equation} to embed your mathematics rather than '$$' -->
+
+\begin{equation}
+\pi(\theta|X_1< y_1,\dots,X_n<y_n) \varpropto \pi(\theta) \prod_{i=1}^n\int_{-\infty}^{y_i}
+   \exp\left(-{(x-\theta)^2\over{2\sigma^2}}\right)\ dx
+\end{equation}
+
+Another equation:
+
+$$\det\left|\,\begin{matrix}%
+c_0&c_1\hfill&c_2\hfill&\ldots&c_n\hfill\cr
+c_1&c_2\hfill&c_3\hfill&\ldots&c_{n+1}\hfill\cr
+c_2&c_3\hfill&c_4\hfill&\ldots&c_{n+2}\hfill\cr
+\,\vdots\hfill&\,\vdots\hfill&
+  \,\vdots\hfill&&\,\vdots\hfill\cr
+c_n&c_{n+1}\hfill&c_{n+2}\hfill&\ldots&c_{2n}\hfill\cr
+\end{matrix}\right|>0$$
+
+
+Lapidus and Pindar, Numerical Solution of Partial Differential Equations in Science and
+Engineering.  Page 54
+
+$$
+\int_t\left\{\sum_{j=1}^3 T_j \left({d\phi_j\over dt}+k\phi_j\right)-kT_e\right\}w_i(t)\ dt=0,
+   \qquad\quad i=1,2,3.
+$$
+
+L\&P  Galerkin method weighting functions.  Page 55
+
+$$
+\sum_{j=1}^3 T_j\int_0^1\left\{{d\phi_j\over dt} + k\phi_j\right\} \phi_i\ dt
+   = \int_{0}^1k\,T_e\phi_idt, \qquad i=1,2,3 $$
+
+Another L\&P (p145)
+
+$$
+\int_{-1}^1\!\int_{-1}^1\!\int_{-1}^1 f\big(\xi,\eta,\zeta\big)
+   = \sum_{k=1}^n\sum_{j=1}^n\sum_{i=1}^n w_i w_j w_k f\big( \xi,\eta,\zeta\big).
+$$
+
+Another L\&P (p126)
+
+$$
+\int_{A_e} (\,\cdot\,) dx dy = \int_{-1}^1\!\int_{-1}^1 (\,\cdot\,) \det[J] d\xi d\eta.
+$$
+
+## Figures
+
+
+Figures and tables with captions will be placed in `figure` and `table` environments, respectively.
+
+```{r nice-fig, fig.cap='Here is a nice figure!', out.width='80%', fig.asp=.75, fig.align='center', fig.pos='H'}
+par(mar = c(4, 4, .1, .1))
+plot(pressure, type = 'b', pch = 19)
+```
+
+Reference a figure by its code chunk label with the `fig:` prefix, e.g., see Figure \@ref(fig:nice-fig). 
+
+## Tables
+
+The easiest way to create a table is to use Excel to input the information for your table and save it as a CSV file. Then you can read in the CSV file, and use the `kable()` function from **knitr** to style the table.
+
+```{r nice-tab}
+#Read in data
+gopher = readr::read_csv("data/tab-gopher-women-sports.csv")
+
+# Create table
+knitr::kable(
+  gopher, 
+  caption = "2017 Ticket Sales and Operating Revenue for the University of Minnesota Women's Athletic Teams",
+  booktabs = TRUE
+)
+```
+
+Further table styling can be carried out via the **kableExtra** package; see https://haozhu233.github.io/kableExtra/awesome_table_in_pdf.pdf. Below we demonstrate some of that functionality.
+
+```{r nice-tab-2}
+library(kableExtra)
+
+knitr::kable(
+  gopher, 
+  caption = "2017 Ticket Sales and Operating Revenue for the University of Minnesota Women's Athletic Teams",
+  booktabs = TRUE,
+  format = "latex"
+  ) %>%
+  footnote(general = "Data obtained from the 2017 NCAA Financial Report")
+```
+
+You can also create the table from within R itself and then use `kable()`.
+
+```{r}
+tab = flights %>%
+  filter(month == 12, day == 24) %>%
+  group_by(carrier_name) %>%
+  summarize(
+    Departure = mean(dep_delay),
+    Arrival = mean(arr_delay)
+    ) %>%
+  select(Carrier = carrier_name, Departure, Arrival)
+
+knitr::kable(
+  tab, 
+  caption = "Average Departure and Arrival Delay (in Minutes) by Carrier on Decemebr 24",
+  booktabs = TRUE,
+  format = "latex",
+  digits = 2
+  )
+```
+
+
+
+You can also reference tables generated from `knitr::kable()`, e.g., see Table \@ref(tab:nice-tab).
+
+
+
+
