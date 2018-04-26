@@ -111,6 +111,7 @@ To help you understand the different files and where you should add your content
 ├── 06-references.Rmd
 ├── DESCRIPTION
 ├── LICENSE
+├── README.md
 ├── _book
 │   ├── predissertation.pdf
 │   └── predissertation.tex
@@ -119,9 +120,7 @@ To help you understand the different files and where you should add your content
 │   └── predissertation_files
 │       └── figure-latex
 │           ├── delaysboxplot-1.pdf
-│           ├── march3plot-1.pdf
-│           ├── nice-fig-1.pdf
-│           └── pressure-1.pdf
+│           └── nice-fig-1.pdf
 ├── _build.sh
 ├── _deploy.sh
 ├── _output.yml
@@ -138,7 +137,6 @@ To help you understand the different files and where you should add your content
 │   └── 00-abstract.Rmd
 ├── index.Rmd
 ├── predissertation.Rproj
-├── README.md
 ├── scripts
 │   ├── knit-chapters-to-docx.R
 │   └── thesis-style-ref.docx
@@ -398,6 +396,21 @@ The QME Predissertation Paper template draws inspiration from several places. Th
 - [Ben Marwick](https://github.com/benmarwick/huskydown/blob/master/README.md) for his work on `huskydown` (a thesis template for the University of Washington), especially the font choice. 
 - [Yihui Xie](https://bookdown.org/yihui/bookdown/) for his work on `bookdown`, the work-horse beneath the template.
 - [RStudio Team](https://www.rstudio.com/) for their vision in creating RStudio, their continued resources in building educational resources, and their willingness to share all of it with the world.
+
+
+## License
+
+<p xmlns:dct="http://purl.org/dc/terms/">
+  <a rel="license"
+     href="http://creativecommons.org/publicdomain/zero/1.0/">
+    <img src="http://i.creativecommons.org/p/zero/1.0/88x31.png" style="border-style: none;" alt="CC0" />
+  </a>
+  <br />
+  To the extent possible under law,
+  <span rel="dct:publisher" resource="[_:publisher]">the person who associated CC0</span>
+  with this work has waived all copyright and related or neighboring
+  rights to this work.
+</p>
 
 
 ## Anything else?
