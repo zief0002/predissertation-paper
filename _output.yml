@@ -4,6 +4,6 @@ bookdown::pdf_book:
     in_header: 'style/preamble.tex'
     before_body: ['style/frontmatter.tex']
   latex_engine: xelatex
-  citation_package: natbib
+  #citation_package: natbib
   keep_tex: yes
 

@@ -29,8 +29,6 @@
             pdfborder={0 0 0},
             breaklinks=true}
 \urlstyle{same}  % don't use monospace font for urls
-\usepackage{natbib}
-\bibliographystyle{apalike}
 \usepackage{color}
 \usepackage{fancyvrb}
 \newcommand{\VerbBar}{|}
@@ -124,7 +122,7 @@
   \postauthor{\par}
   \predate{\centering\large\emph}
   \postdate{\par}
-  \date{2018-04-26}
+  \date{2018-05-02}
 
 
 \usepackage{booktabs}
@@ -435,7 +433,8 @@ file.
 \hypertarget{review}{%
 \chapter{Review of the Literature}\label{review}}
 
-This is where you will review the literature.
+This is where you will review the literature. Testing\ldots{}B. Gooch \&
+Gooch (2001)
 
 \clearpage
 
@@ -516,6 +515,44 @@ package; see
 You can also reference tables generated from \texttt{knitr::kable()},
 e.g., see Table \ref{tab:nice-tab}.
 
+\rowcolors{2}{gray!6}{white}
+\begin{table}
+
+\caption{\label{tab:softw}Data Visualization Course Software}
+\centering
+\fontsize{11}{13}\selectfont
+\begin{tabular}[t]{ccccccc>{\raggedright\arraybackslash}p{2in}}
+\hiderowcolors
+\toprule
+Course & D3 & JavaScript & Tableau & Excel & HTML 5 & R & Other\\
+\midrule
+\showrowcolors
+1 & X &  &  &  &  &  & \\
+2 & X & X &  &  &  &  & \\
+3 &  &  & X & X &  &  & \\
+4 &  &  &  &  &  &  & Java, GIMP\\
+5 & X & X &  &  & X &  & \\
+\addlinespace
+6 & X &  &  & X & X & X & Matlab, Open GL\\
+7 &  & X &  &  &  &  & \\
+8 &  &  &  &  &  &  & \\
+9 &  &  & X &  &  & X & Oracle APEX\\
+10 &  &  &  & X &  &  & Gephi to Cytoscape, Palladio,  Google Earth, QGIS,CartoDB,  TimeMapper, Google Fusion Tables,  Excel charts, Wordle, Tagcrowd,  Voyant, Mallet, Word 2 Vec, Stanford Topic Modeling Toolbox\\
+\addlinespace
+11 & X &  & X &  &  &  & Highcharts, Adobe Illustrator\\
+12 &  &  &  &  &  &  & \\
+13 &  &  &  &  &  &  & \\
+14 & X &  & X & X &  & X & Google Charts, Dreamweaver, PPT\\
+15 &  &  &  &  &  & X & \\
+\addlinespace
+16 & X &  &  &  &  &  & \\
+17 &  &  &  & X &  & X & \\
+18 &  &  &  &  &  & X & \\
+\bottomrule
+\end{tabular}
+\end{table}
+\rowcolors{2}{white}{white}
+
 \clearpage
 
 \hypertarget{results}{%
@@ -546,8 +583,8 @@ Here is a figure of Goldy.
 \end{figure}
 
 You can write citations, too. For example, we are using the
-\textbf{bookdown} package \citep{R-bookdown} in this sample book, which
-was built on top of R Markdown and \textbf{knitr} \citep{xie2015}.
+\textbf{bookdown} package (Xie, 2018) in this sample book, which was
+built on top of R Markdown and \textbf{knitr} (Xie, 2015).
 
 \clearpage
 
@@ -581,7 +618,30 @@ the major findings, and your conclusions.
 
 \clearpage
 
-\bibliography{bib/book.bib,bib/packages.bib}
+\hypertarget{references}{%
+\chapter*{References}\label{references}}
+\addcontentsline{toc}{chapter}{References}
+
+\setlength{\parindent}{-0.2in}
+\setlength{\leftskip}{0.2in}
+\setlength{\parskip}{8pt}
+
+\noindent
+
+\hypertarget{refs}{}
+\leavevmode\hypertarget{ref-goochandgooch2001}{}%
+Gooch, B., \& Gooch, A. (2001). \emph{Non-Photorealistic Rendering}.
+Natick, Massachusetts: A K Peters.
+
+\leavevmode\hypertarget{ref-xie2015}{}%
+Xie, Y. (2015). \emph{Dynamic documents with R and knitr} (2nd ed.).
+Boca Raton, Florida: Chapman; Hall/CRC. Retrieved from
+\url{http://yihui.name/knitr/}
+
+\leavevmode\hypertarget{ref-R-bookdown}{}%
+Xie, Y. (2018). \emph{Bookdown: Authoring books and technical documents
+with r markdown}. Retrieved from
+\url{https://CRAN.R-project.org/package=bookdown}
 
 
 \end{document}

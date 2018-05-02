@@ -8,14 +8,14 @@ output: bookdown::pdf_book
 documentclass: memoir
 classoption: [12pt, letterpaper, oneside, oldfontcommands]
 bibliography: ['bib/book.bib', 'bib/packages.bib']
-biblio-style: apalike
+csl: "style/apa.csl"
 ---
 
 
 
 <!-- We begin by checking to ensure that needed packages are installed and then we load them into our current working environment. -->
 
-```{r load_pkgs, echo=FALSE, message=FALSE}
+```{r load_pkgs, echo=FALSE, message=FALSE, warning=FALSE}
 library(bookdown)
 library(devtools)
 library(dplyr)
@@ -28,6 +28,7 @@ library(kableExtra)
 ```{r echo=FALSE}
 # Set knitr options to print a blank instead of 'NA'
 options(knitr.kable.NA = '')
+library(kableExtra)
 ```
 
 
